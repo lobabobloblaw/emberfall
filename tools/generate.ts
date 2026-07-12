@@ -50,7 +50,8 @@ async function runShot(shot: Shot): Promise<void> {
   const output = await replicate.run(shot.model, { input: shot.input });
   const file = Array.isArray(output) ? output[0] : output;
   // replicate JS client v1+ returns FileOutput; .blob() yields the bytes
-  const buf = Buffer.from(await (file as { blob(): Promise<Blob> }).blob().then((b) => b.arrayBuffer()));
+  const bytes = await (file as { blob(): Promise<Blob> }).blob().then((b) => b.arrayBuffer());
+  const buf = Buffer.from(new Uint8Array(bytes));
   await writeFileEnsuring(cached, buf);
   await copyFileEnsuring(cached, shot.out);
   console.log(`↻ ${shot.id} GENERATED (${key}) -> ${shot.out}`);

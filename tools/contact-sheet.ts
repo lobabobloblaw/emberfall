@@ -1,6 +1,6 @@
 // Builds labeled contact sheets of assets-src/raw for human/agent review.
 // Output: tools/.cache/contact/*.png (ephemeral, gitignored).
-import sharp from "sharp";
+import sharp, { type OverlayOptions } from "sharp";
 import { readdir, mkdir } from "node:fs/promises";
 
 const OUT = "tools/.cache/contact";
@@ -35,7 +35,7 @@ for (const [sheetName, match] of Object.entries(groups)) {
   const rows = Math.ceil(cells.length / cols);
   const W = cols * cellW;
   const H = rows * cellH;
-  const composites: sharp.OverlayOptions[] = [];
+  const composites: OverlayOptions[] = [];
   const labels: string[] = [];
   cells.forEach((c, i) => {
     const x = (i % cols) * cellW + Math.floor((cellW - c.w) / 2);

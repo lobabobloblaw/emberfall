@@ -5,7 +5,7 @@
 //   - splits tall objects into below (base) / above (walk-behind) layers
 //   - packs terrain+water+extra tiles into one master tileset
 //   - emits debug sheets to tools/.cache/contact/ for eyeballing
-import sharp from "sharp";
+import sharp, { type OverlayOptions } from "sharp";
 import { mkdir, writeFile } from "node:fs/promises";
 import { nearestDb32 } from "./db32";
 import { CHAR_SHEETS, SLIME_SHEET, OBJECT_SPLITS, PLAIN_OBJECTS, TILESET, TILE_NAMES, COPY_GROUPS } from "./atlas.config";
@@ -190,7 +190,7 @@ console.log(`✔ postprocess complete -> ${OUT}/manifest.json`);
   const ids = Object.keys(OBJECT_SPLITS);
   const cellW = 200;
   const cellH = 220;
-  const comps: sharp.OverlayOptions[] = [];
+  const comps: OverlayOptions[] = [];
   const svgs: string[] = [];
   for (let i = 0; i < ids.length; i++) {
     const id = ids[i];
