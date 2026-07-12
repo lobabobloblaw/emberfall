@@ -55,6 +55,20 @@ test("hero renders behind tree canopy but in front of trunks (fully layered)", a
   expectNoErrors(handle);
 });
 
+test("T toggles the day-tint FX layer above the world, below UI", async ({ page }) => {
+  const handle = await bootToWorld(page);
+  expect(await page.evaluate(() => window.__test.fxAlpha())).toBe(0);
+  await page.keyboard.press("t");
+  await page.waitForTimeout(100);
+  expect(await page.evaluate(() => window.__test.fxAlpha())).toBeGreaterThan(0);
+  const depths = await page.evaluate(() => window.__test.getDepths());
+  expect(depths.fx).toBeGreaterThan(depths.objectsAbove);
+  await page.keyboard.press("t");
+  await page.waitForTimeout(100);
+  expect(await page.evaluate(() => window.__test.fxAlpha())).toBe(0);
+  expectNoErrors(handle);
+});
+
 test("parallax backdrop scrolls slower than the camera", async ({ page }) => {
   const handle = await bootToWorld(page);
   const factor = await page.evaluate(() => window.__test.getParallax().scrollFactorX);

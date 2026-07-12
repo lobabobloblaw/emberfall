@@ -12,7 +12,9 @@ npx playwright install chromium   # once, for e2e tests
 npm run dev                       # play at http://localhost:5173
 ```
 
-Arrow keys / WASD to move, E or Space to interact, I for inventory.
+Arrow keys / WASD to move, E or Space to interact, I for inventory, T to toggle the
+evening tint (FX layer). Talk to the elder, loot the chest by the pond, beat the slime
+in the east meadow, and save by drinking at the well.
 
 ## Commands
 
