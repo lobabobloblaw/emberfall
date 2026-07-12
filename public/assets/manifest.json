@@ -1,0 +1,319 @@
+{
+  "version": 1,
+  "tileSize": 32,
+  "characters": {
+    "hero": {
+      "file": "characters/hero.png",
+      "frameWidth": 48,
+      "frameHeight": 48,
+      "columns": 4,
+      "anims": {
+        "up": [
+          0,
+          1,
+          2,
+          3
+        ],
+        "down": [
+          8,
+          9,
+          10,
+          11
+        ],
+        "left": [
+          12,
+          13,
+          14,
+          15
+        ],
+        "right": [
+          4,
+          5,
+          6,
+          7
+        ]
+      },
+      "idle": {
+        "up": 0,
+        "down": 8,
+        "left": 12,
+        "right": 4
+      },
+      "frameRate": 8
+    },
+    "elder": {
+      "file": "characters/elder.png",
+      "frameWidth": 48,
+      "frameHeight": 48,
+      "columns": 4,
+      "anims": {
+        "up": [
+          8,
+          9,
+          10,
+          11
+        ],
+        "down": [
+          0,
+          1,
+          2,
+          3
+        ],
+        "left": [
+          12,
+          13,
+          14,
+          15
+        ],
+        "right": [
+          4,
+          5,
+          6,
+          7
+        ]
+      },
+      "idle": {
+        "up": 8,
+        "down": 0,
+        "left": 12,
+        "right": 4
+      },
+      "frameRate": 8
+    },
+    "merchant": {
+      "file": "characters/merchant.png",
+      "frameWidth": 48,
+      "frameHeight": 48,
+      "columns": 4,
+      "anims": {
+        "up": [
+          8,
+          9,
+          10,
+          11
+        ],
+        "down": [
+          0,
+          1,
+          2,
+          3
+        ],
+        "left": [
+          12,
+          13,
+          14,
+          15
+        ],
+        "right": [
+          4,
+          5,
+          6,
+          7
+        ]
+      },
+      "idle": {
+        "up": 8,
+        "down": 0,
+        "left": 12,
+        "right": 4
+      },
+      "frameRate": 8
+    },
+    "villager": {
+      "file": "characters/villager.png",
+      "frameWidth": 48,
+      "frameHeight": 48,
+      "columns": 4,
+      "anims": {
+        "up": [
+          8,
+          9,
+          10,
+          11
+        ],
+        "down": [
+          0,
+          1,
+          2,
+          3
+        ],
+        "left": [
+          12,
+          13,
+          14,
+          15
+        ],
+        "right": [
+          4,
+          5,
+          6,
+          7
+        ]
+      },
+      "idle": {
+        "up": 8,
+        "down": 0,
+        "left": 12,
+        "right": 4
+      },
+      "frameRate": 8
+    },
+    "slime": {
+      "file": "characters/slime.png",
+      "frameWidth": 32,
+      "frameHeight": 32,
+      "columns": 5,
+      "anims": {
+        "idle": [
+          0,
+          1
+        ]
+      },
+      "idle": {
+        "down": 0
+      },
+      "frameRate": 4
+    }
+  },
+  "objects": {
+    "tree-oak": {
+      "below": "objects/tree-oak-below.png",
+      "above": "objects/tree-oak-above.png",
+      "width": 96,
+      "height": 96,
+      "splitY": 58
+    },
+    "tree-pine": {
+      "below": "objects/tree-pine-below.png",
+      "above": "objects/tree-pine-above.png",
+      "width": 96,
+      "height": 96,
+      "splitY": 63
+    },
+    "cottage": {
+      "below": "objects/cottage-below.png",
+      "above": "objects/cottage-above.png",
+      "width": 160,
+      "height": 160,
+      "splitY": 83
+    },
+    "shop": {
+      "below": "objects/shop-below.png",
+      "above": "objects/shop-above.png",
+      "width": 160,
+      "height": 160,
+      "splitY": 88
+    },
+    "well": {
+      "below": "objects/well-below.png",
+      "above": "objects/well-above.png",
+      "width": 64,
+      "height": 64,
+      "splitY": 31
+    },
+    "rock": {
+      "below": "objects/rock.png",
+      "width": 64,
+      "height": 64
+    },
+    "bush": {
+      "below": "objects/bush.png",
+      "width": 64,
+      "height": 64
+    },
+    "fence": {
+      "below": "objects/fence.png",
+      "width": 64,
+      "height": 64
+    },
+    "chest-closed": {
+      "below": "objects/chest-closed.png",
+      "width": 64,
+      "height": 64
+    },
+    "chest-open": {
+      "below": "objects/chest-open.png",
+      "width": 64,
+      "height": 64
+    },
+    "sign": {
+      "below": "objects/sign.png",
+      "width": 64,
+      "height": 64
+    }
+  },
+  "tileset": {
+    "file": "tiles/tileset.png",
+    "columns": 8,
+    "count": 44,
+    "names": {
+      "dirt": 0,
+      "dirt2": 4,
+      "dirt3": 8,
+      "edgeNW": 1,
+      "edgeN": 2,
+      "edgeNE": 3,
+      "edgeW": 5,
+      "grass": 6,
+      "edgeE": 7,
+      "edgeSW": 9,
+      "edgeS": 10,
+      "edgeSE": 11,
+      "grassField": 12,
+      "holeSE": 13,
+      "holeSW": 14,
+      "pathCornerA": 15,
+      "grassField2": 16,
+      "holeNE": 17,
+      "holeNW": 18,
+      "pathCornerB": 19,
+      "grassDark": 20,
+      "waterNW": 21,
+      "waterN": 22,
+      "waterNE": 23,
+      "grassDark2": 24,
+      "waterW": 25,
+      "water": 26,
+      "waterE": 27,
+      "grassDark3": 28,
+      "waterSW": 29,
+      "waterS": 30,
+      "waterSE": 31,
+      "water2": 32,
+      "islandSE": 33,
+      "islandSW": 34,
+      "waterAltA": 35,
+      "water3": 36,
+      "islandSW2": 37,
+      "islandNW": 38,
+      "waterAltB": 39,
+      "grassA": 40,
+      "grassB": 41,
+      "flowers": 42,
+      "stonePath": 43
+    }
+  },
+  "portraits": {
+    "hero": "portraits/hero.png",
+    "elder": "portraits/elder.png",
+    "merchant": "portraits/merchant.png",
+    "villager": "portraits/villager.png"
+  },
+  "icons": {
+    "heart": "icons/heart.png",
+    "potion": "icons/potion.png",
+    "coin": "icons/coin.png",
+    "sword": "icons/sword.png"
+  },
+  "scenes": {
+    "title": "scenes/title.png",
+    "battle-forest": "scenes/battle-forest.png",
+    "parallax-forest": "scenes/parallax-forest.png"
+  },
+  "battle": {
+    "slime": "battle/slime.png"
+  },
+  "ui": {
+    "panel": "ui/panel.png"
+  }
+}

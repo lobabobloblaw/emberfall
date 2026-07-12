@@ -205,7 +205,8 @@ export async function buildShotlist(): Promise<Shot[]> {
       id: "obj-shop",
       model: RD_PLUS,
       input: {
-        prompt: "village general store with green roof, striped awning and hanging shop sign",
+        // v2: first take had tiny people and market clutter baked into the storefront
+        prompt: "village general store building with green roof, striped awning and hanging wooden shop sign, closed empty storefront, no people, no characters",
         style: "topdown_asset",
         width: 160,
         height: 160,
@@ -398,8 +399,9 @@ export async function buildShotlist(): Promise<Shot[]> {
       id: "scene-title",
       model: RD_PLUS,
       input: {
+        // v2: `classic` style clamps width to 192px; `environment` honors 320x180
         prompt: "misty village nestled in a forest valley at dawn, warm glowing cottage windows, distant mountains, 16-bit JRPG title screen background",
-        style: "classic",
+        style: "environment",
         width: 320,
         height: 180,
         input_palette: palette,
@@ -453,7 +455,8 @@ export async function buildShotlist(): Promise<Shot[]> {
       id: "icon-heart",
       model: RD_FAST,
       input: {
-        prompt: "small red heart icon, game HUD item",
+        // v2: first take was a hollow heart outline, reads as an empty HP heart
+        prompt: "solid filled red heart with shine highlight, health icon, game HUD item",
         style: "game_asset",
         width: 24,
         height: 24,
@@ -481,7 +484,8 @@ export async function buildShotlist(): Promise<Shot[]> {
       id: "icon-coin",
       model: RD_FAST,
       input: {
-        prompt: "single shiny gold coin, game item icon",
+        // v2: first take had a bitcoin-style "B" stamped on the face
+        prompt: "single shiny gold coin with a plain star emblem, fantasy game currency icon",
         style: "game_asset",
         width: 24,
         height: 24,
