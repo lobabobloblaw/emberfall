@@ -7,6 +7,9 @@ import type { Facing, Manifest } from "../types";
 import * as V from "../maps/village";
 import { buildGround, buildDetail } from "../maps/autotile";
 import { GameState, type GameStateData } from "../logic/state";
+import type { DialogueEffect } from "../logic/dialogue";
+import { saveGame } from "../logic/save";
+import type { UIScene } from "./UIScene";
 
 export const WORLD_EVT = {
   INTERACT: "world-interact",
@@ -16,7 +19,7 @@ export const WORLD_EVT = {
 
 export interface InteractTarget {
   id: string;
-  kind: "chest" | "sign" | "door" | "npc";
+  kind: "chest" | "sign" | "door" | "well" | "npc";
   dialogue: string;
   x: number;
   y: number;
@@ -298,9 +301,65 @@ export class WorldScene extends Phaser.Scene {
     const inside = tx >= z.x1 && tx <= z.x2 && ty >= z.y1 && ty <= z.y2;
     if (inside && !this.inBattleZone && !this.state.flags.has("battle_won") && !this.controlsLocked) {
       this.inBattleZone = true;
-      this.game.events.emit(WORLD_EVT.BATTLE_START, this);
+      this.startBattle();
     }
     if (!inside) this.inBattleZone = false;
+  }
+
+  private startBattle(): void {
+    this.controlsLocked = true;
+    (this.player.body as Phaser.Physics.Arcade.Body).setVelocity(0, 0);
+    this.game.events.emit(WORLD_EVT.BATTLE_START);
+    this.cameras.main.fadeOut(350, 16, 18, 28);
+    this.cameras.main.once(Phaser.Cameras.Scene2D.Events.FADE_OUT_COMPLETE, () => {
+      this.scene.pause();
+      this.scene.launch("BattleScene");
+    });
+  }
+
+  /** BattleScene hands control back here after its own fade-out */
+  onBattleEnd(outcome: "won" | "lost" | "fled"): void {
+    this.scene.resume();
+    if (outcome === "won") this.onBattleWon();
+    if (outcome === "lost") {
+      this.state.hp = 1;
+      this.player.setPosition(V.defeatRespawn.x, V.defeatRespawn.y);
+      this.facing = "down";
+      this.emitState();
+    }
+    this.cameras.main.fadeIn(350, 16, 18, 28);
+    this.controlsLocked = false;
+    if (outcome === "lost") {
+      const ui = this.scene.get("UIScene") as UIScene;
+      ui.openDialogue("defeat", this);
+    }
+  }
+
+  /** apply dialogue effects (called by UIScene when a dialogue closes) */
+  applyEffects(effects: DialogueEffect[]): void {
+    for (const e of effects) {
+      switch (e.type) {
+        case "set-flag":
+          this.state.flags.add(e.flag);
+          break;
+        case "give-item":
+          this.state.inventory.add(e.id, e.name, e.qty);
+          break;
+        case "give-coins":
+          this.state.coins += e.amount;
+          break;
+        case "open-chest":
+          this.openChest();
+          break;
+        case "save-heal":
+          this.state.hp = this.state.maxHp;
+          this.state.pos = { x: this.player.x, y: this.player.y };
+          this.state.facing = this.facing;
+          saveGame(this.state.toJSON(), window.localStorage);
+          break;
+      }
+    }
+    if (effects.length > 0) this.emitState();
   }
 
   /** battle victory cleanup */
@@ -355,7 +414,8 @@ export class WorldScene extends Phaser.Scene {
       getFlags: () => [...this.state.flags],
       getState: () => this.state.toJSON(),
       getTarget: () => this.currentTarget,
-      fxAlpha: () => this.fxTint.fillAlpha
+      fxAlpha: () => this.fxTint.fillAlpha,
+      getUI: () => (this.scene.get("UIScene") as UIScene).debugState()
     };
   }
 }

@@ -13,6 +13,7 @@ declare global {
       getState(): unknown;
       getTarget(): { id: string; kind: string } | null;
       fxAlpha(): number;
+      getUI(): { dialogueOpen: boolean; speaker: string; text: string; inventoryOpen: boolean };
     };
   }
 }
@@ -28,7 +29,13 @@ export async function bootToWorld(page: Page): Promise<BootHandle> {
     if (msg.type() === "error") errors.push(msg.text());
   });
   page.on("pageerror", (err) => errors.push(String(err)));
-  await page.addInitScript(() => window.localStorage.clear());
+  // wipe the save on the FIRST load only — reloads within a test must keep it
+  await page.addInitScript(() => {
+    if (!window.sessionStorage.getItem("e2e-booted")) {
+      window.localStorage.clear();
+      window.sessionStorage.setItem("e2e-booted", "1");
+    }
+  });
   await page.goto("/");
   await page.waitForFunction(() => !!window.__game, undefined, { timeout: 15_000 });
   await page.keyboard.press("Enter");

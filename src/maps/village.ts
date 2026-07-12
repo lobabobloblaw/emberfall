@@ -145,7 +145,7 @@ export interface InteractableDef {
   id: string;
   tx: number;
   ty: number;
-  kind: "chest" | "sign" | "door";
+  kind: "chest" | "sign" | "door" | "well";
   /** dialogue id in the script table */
   dialogue: string;
 }
@@ -154,8 +154,12 @@ export const interactables: InteractableDef[] = [
   { id: "chest", tx: 5.5, ty: 17, kind: "chest", dialogue: "chest" },
   { id: "sign", tx: 22.5, ty: 16, kind: "sign", dialogue: "sign" },
   { id: "cottage-door", tx: 9.5, ty: 7, kind: "door", dialogue: "cottage-door" },
-  { id: "shop-door", tx: 28.5, ty: 7, kind: "door", dialogue: "shop-door" }
+  { id: "shop-door", tx: 28.5, ty: 7, kind: "door", dialogue: "shop-door" },
+  { id: "well", tx: 20, ty: 13, kind: "well", dialogue: "well" }
 ];
+
+/** where the hero wakes after defeat (beside the well) */
+export const defeatRespawn = { x: 20 * TILE, y: 15 * TILE };
 
 /**
  * Static collision grid: map borders, water, object footprints.
