@@ -1,5 +1,7 @@
 # Emberfall
 
+**Play it: <https://lobabobloblaw.github.io/emberfall/>**
+
 A 16-bit style browser RPG prototype. Every texture and sprite is AI-generated through
 [Replicate](https://replicate.com)'s Retro Diffusion models (`rd-fast`, `rd-plus`,
 `rd-tile`, `rd-animation`) from the declarative shot list in `tools/shotlist.ts`.
