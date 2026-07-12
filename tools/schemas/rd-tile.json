@@ -1,0 +1,27 @@
+{
+  "model": "retro-diffusion/rd-tile",
+  "description": "All the tools you need for generating pixel art tilesets",
+  "latest_version_id": "c4f59be396f222aa021dec778f1cb49bdc4434ea4727bc084d2baae1447ed1b7",
+  "fetched": "2026-07-12 via Replicate MCP (models.get)",
+  "notes": "No input_palette and no remove_bg on this model — palette conformance is enforced in tools/postprocess.ts (DB32 nearest-color quantize). width/height are the PER-TILE size for tilesets, not the output image size.",
+  "input": {
+    "type": "object",
+    "title": "Input",
+    "required": ["prompt"],
+    "properties": {
+      "seed": { "type": "integer", "nullable": true, "description": "Random seed. Set for reproducible generation" },
+      "style": {
+        "default": "tileset",
+        "description": "Style to apply to the generated image\n\ntileset: Create full tilesets from a simple prompt describing the textures or environment, using a simple set of \"wang\" style combinations\ntileset_advanced: Full tilesets from two prompts and/or textures, using a simple set of \"wang\" style combinations\nsingle_tile: Detailed single tile texture for creating full tilesets or surfaces\ntile_variation: Texture variations of the provided tile image\ntile_object: Small assets for placing on sections of tiles\nscene_object: Large assets for placing on tileset maps"
+      },
+      "width": { "type": "integer", "default": 32, "maximum": 384, "minimum": 16, "description": "Tile width (for tilesets, this is the size of each individual tile, not the output image)" },
+      "height": { "type": "integer", "default": 32, "maximum": 384, "minimum": 16, "description": "Tile height (for tilesets, this is the size of each individual tile, not the output image)" },
+      "prompt": { "type": "string", "description": "Text prompt for generation" },
+      "num_images": { "type": "integer", "default": 1, "maximum": 10, "minimum": 1 },
+      "input_image": { "type": "string", "format": "uri", "nullable": true },
+      "extra_prompt": { "type": "string", "nullable": true, "description": "Extra prompt for advanced tileset generation (tileset_advanced only)" },
+      "extra_input_image": { "type": "string", "format": "uri", "nullable": true, "description": "Extra input image for advanced tileset generation (tileset_advanced only)" },
+      "bypass_prompt_expansion": { "type": "boolean", "default": false }
+    }
+  }
+}

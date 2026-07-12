@@ -1,0 +1,37 @@
+{
+  "model": "retro-diffusion/rd-animation",
+  "description": "Style consistent animated pixel art sprite generation",
+  "latest_version_id": "a9f33da7d9a985064dbc2d99621b87da5b8a22ed4d412c3a1c34ab4b807a6d8f",
+  "fetched": "2026-07-12 via Replicate MCP (models.get)",
+  "notes": "No input_palette on this model — palette conformance is enforced in tools/postprocess.ts (DB32 nearest-color quantize). Spritesheet grid layout is probed empirically and recorded in tools/atlas.config.ts.",
+  "input": {
+    "type": "object",
+    "title": "Input",
+    "required": ["prompt"],
+    "properties": {
+      "seed": { "type": "integer", "nullable": true, "description": "Random seed. Set for reproducible generation" },
+      "style": {
+        "default": "four_angle_walking",
+        "description": "Style to apply to the generated image\n\nfour_angle_walking: Consistent 4 direction, 4 frame long walking animations of humanoid characters\nwalking_and_idle: Consistent 4 direction walking and idle animations of humanoid characters\nsmall_sprites: 4 direction 32x32 sprites with walking, arm raising/attacking, looking around, surprised, and laying down animations\nvfx: Eye-catching animations for fire, explosions, lightning, or other simple effects"
+      },
+      "width": {
+        "type": "integer",
+        "default": 48,
+        "maximum": 96,
+        "minimum": 24,
+        "description": "Animation width. four_angle_walking and walking_and_idle only support 48. small_sprites only supports 32. vfx supports 24-96."
+      },
+      "height": {
+        "type": "integer",
+        "default": 48,
+        "maximum": 96,
+        "minimum": 24,
+        "description": "Animation height. four_angle_walking and walking_and_idle only support 48. small_sprites only supports 32. vfx supports 24-96."
+      },
+      "prompt": { "type": "string", "description": "Text prompt for generation" },
+      "input_image": { "type": "string", "format": "uri", "nullable": true },
+      "return_spritesheet": { "type": "boolean", "default": false, "description": "Return animation as a spritesheet PNG instead of animated GIF" },
+      "bypass_prompt_expansion": { "type": "boolean", "default": false }
+    }
+  }
+}

@@ -1,0 +1,50 @@
+{
+  "model": "retro-diffusion/rd-fast",
+  "description": "Fast pixel art image generation",
+  "latest_version_id": "067f6cd8a3c5582b4317d462176b75d9cdfae8ae548033220bddd0c19c4a1357",
+  "fetched": "2026-07-12 via Replicate MCP (models.get)",
+  "input": {
+    "type": "object",
+    "title": "Input",
+    "required": ["prompt"],
+    "properties": {
+      "seed": {
+        "type": "integer",
+        "nullable": true,
+        "description": "Random seed. Set for reproducible generation"
+      },
+      "style": {
+        "default": "default",
+        "description": "Style to apply to the generated image\n\ndefault: Simple clean pixel art, with Anime illustration influences\nsimple: Simple shading with minimalist shapes and designs\ndetailed: Pixel art with lots of shading and details\nretro: A classic arcade game aesthetic inspired by early PC games\ngame_asset: Distinct assets set on a simple background\nportrait: Character portrait focused images with high detail\ntexture: Flat game textures like stones, bricks, or wood\nui: User interface boxes and buttons\nitem_sheet: Sheets of objects placed on a simple background\ncharacter_turnaround: Character sprites viewed from different angles\n1_bit: Two color black and white only images\nlow_res: General low resolution pixel art images\nmc_item: Minecraft-styled items with automatic transparency\nmc_texture: Minecraft-styled flat textures, like grass, stones, or wood\nno_style: Pixel art with no style influence applied"
+      },
+      "width": { "type": "integer", "default": 256, "maximum": 384, "minimum": 16 },
+      "height": { "type": "integer", "default": 256, "maximum": 384, "minimum": 16 },
+      "prompt": { "type": "string", "description": "Text prompt for generation" },
+      "tile_x": { "type": "boolean", "default": false, "description": "Enable seamless tiling on X axis" },
+      "tile_y": { "type": "boolean", "default": false, "description": "Enable seamless tiling on Y axis" },
+      "strength": {
+        "type": "number",
+        "default": 0.8,
+        "maximum": 1,
+        "minimum": 0,
+        "nullable": true,
+        "description": "Prompt strength in image-to-image generation. Only used when input_image is provided."
+      },
+      "remove_bg": { "type": "boolean", "default": false, "description": "Remove background to create transparent images" },
+      "num_images": { "type": "integer", "default": 1, "maximum": 10, "minimum": 1 },
+      "input_image": {
+        "type": "string",
+        "format": "uri",
+        "nullable": true,
+        "description": "Input image for image-to-image generation or reference. Will be converted to RGB without transparency."
+      },
+      "input_palette": {
+        "type": "string",
+        "format": "uri",
+        "nullable": true,
+        "description": "Reference palette image to guide color choices"
+      },
+      "bypass_prompt_expansion": { "type": "boolean", "default": false, "description": "Disable automatic prompt expansion" }
+    }
+  }
+}

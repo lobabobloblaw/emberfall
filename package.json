@@ -1,0 +1,33 @@
+{
+  "name": "emberfall",
+  "private": true,
+  "version": "0.1.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc --noEmit && vite build",
+    "preview": "vite preview",
+    "test": "vitest run",
+    "test:e2e": "playwright test",
+    "gen": "tsx tools/generate.ts",
+    "gen:qa": "tsx tools/qa-assets.ts",
+    "gen:keys": "tsx tools/generate.ts --print-keys",
+    "palette": "tsx tools/make-palette.ts",
+    "postprocess": "tsx tools/postprocess.ts",
+    "verify": "npm run gen:qa && npm run test && npm run test:e2e && tsc --noEmit"
+  },
+  "dependencies": {
+    "phaser": "^4.2.1"
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.61.1",
+    "@types/node": "^22.15.0",
+    "dotenv": "^17.4.2",
+    "replicate": "^1.4.0",
+    "sharp": "^0.35.3",
+    "tsx": "^4.23.0",
+    "typescript": "^5.9.0",
+    "vite": "^8.1.4",
+    "vitest": "^4.1.10"
+  }
+}

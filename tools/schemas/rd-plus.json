@@ -1,0 +1,34 @@
+{
+  "model": "retro-diffusion/rd-plus",
+  "description": "High quality and authentic pixel art image generation",
+  "latest_version_id": "60eb48db78cbd38cc6473d309a311db08244ed021567a9234970af971bab0d87",
+  "fetched": "2026-07-12 via Replicate MCP (models.get)",
+  "input": {
+    "type": "object",
+    "title": "Input",
+    "required": ["prompt"],
+    "properties": {
+      "seed": { "type": "integer", "nullable": true, "description": "Random seed. Set for reproducible generation" },
+      "style": {
+        "default": "default",
+        "description": "Style to apply to the generated image\n\ndefault: Clean pixel art style with bold colors and outlines\nretro: Classic pixel art style inspired by PC98 games\nwatercolor: Pixel art mixed with a watercolor painting aesthetic\ntextured: Semi-realistic pixel art style with lots of shading and texture\ncartoon: Simple shapes and shading, with bold outlines\nui_element: User interface boxes and buttons\nitem_sheet: Sheets of objects placed on a simple background\ncharacter_turnaround: Character sprites viewed from different angles\nenvironment: One-point perspective scenes with outlines and strong shapes\nisometric: 45 degree isometric perspective, with consistent outlines\nisometric_asset: 45 degree isometric objects or assets, on a neutral background\ntopdown_map: Video game map style pixel art with a 3/4 top down perspective\ntopdown_asset: 3/4 top down perspective game assets on a simple background\nclassic: Strongly outlined medium-resolution pixel art with a focus on simple shading and clear design\ntopdown_item: Small 3/4 top down perspective assets with no background\nlow_res: High quality, low resolution pixel art assets and backgrounds\nmc_item: High quality Minecraft-styled items and game assets\nmc_texture: Detailed Minecraft-style flat block textures, with enhanced prompt following\nskill_icon: Video game style skill icons for representing abilities"
+      },
+      "width": { "type": "integer", "default": 256, "maximum": 384, "minimum": 16 },
+      "height": { "type": "integer", "default": 256, "maximum": 384, "minimum": 16 },
+      "prompt": { "type": "string", "description": "Text prompt for generation" },
+      "tile_x": { "type": "boolean", "default": false, "description": "Enable seamless tiling on X axis" },
+      "tile_y": { "type": "boolean", "default": false, "description": "Enable seamless tiling on Y axis" },
+      "strength": { "type": "number", "default": 0.8, "maximum": 1, "minimum": 0, "nullable": true },
+      "remove_bg": { "type": "boolean", "default": false, "description": "Remove background to create transparent images" },
+      "num_images": { "type": "integer", "default": 1, "maximum": 10, "minimum": 1 },
+      "input_image": { "type": "string", "format": "uri", "nullable": true },
+      "input_palette": {
+        "type": "string",
+        "format": "uri",
+        "nullable": true,
+        "description": "Reference palette image to guide color choices"
+      },
+      "bypass_prompt_expansion": { "type": "boolean", "default": false }
+    }
+  }
+}
